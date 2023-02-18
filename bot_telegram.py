@@ -1,7 +1,7 @@
 from aiogram import Bot, types
 from aiogram.dispatcher import Dispatcher
 from aiogram.utils import executor
-from config import token
+from config import token, all_commands
 from aiogram.dispatcher.filters import Text
 
 bot = Bot(token=token, parse_mode=types.ParseMode.HTML)
@@ -85,6 +85,14 @@ async def study_information(message: types.Message):
     @dp.message_handler(Text(equals="Отбор в университет"))
     async def about_study(message: types.Message):
         await message.answer("Отбор в университет")
+
+
+@dp.message_handler(content_types=['text'])
+async def get_text_messages(message: types.Message):
+    if message.text != all_commands:
+        await message.answer('ЭЭ ты шо.. дурачёчечек???')
+    else:
+        pass
 
 
 if __name__ == '__main__':
