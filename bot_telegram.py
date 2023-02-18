@@ -4,7 +4,7 @@ from aiogram.dispatcher import Dispatcher
 from aiogram.utils import executor
 from config import token, all_commands
 from aiogram.dispatcher.filters import Text
-from parser import information_about_innopolis
+from parser import information_about_innopolis, postgraduate_studies
 
 bot = Bot(token=token, parse_mode=types.ParseMode.HTML)
 storage = MemoryStorage()
@@ -31,7 +31,7 @@ async def start(message: types.Message):
 
 
 # Эта функция создана для того, чтобы пользователь мог выбрать по какой учебной программе он получит информацию
-@dp.message_handler(Text(equals=['Учебные программы']))
+@dp.message_handler(Text(equals=['Учебные программы', 'Вернуться назад']))
 @dp.throttled(anti_flood, rate=4)
 async def choice_study_programs(message: types.Message):
     select_buttons = ['Бакалавриат', 'Магистратура', 'Аспирантура', 'Назад']
@@ -58,20 +58,42 @@ async def undergraduate(message: types.Message):
 async def magistracy(message: types.Message):
     await message.answer('Здесь будет информация о Магистратуре')
 
-    # Эта функция выдаёт информацию об Аспирантуре в иннополисе
 
-
+# Эта функция выдаёт информацию об Аспирантуре в иннополисе
 @dp.message_handler(Text(equals="Аспирантура"))
 @dp.throttled(anti_flood, rate=4)
 async def graduate_school(message: types.Message):
-    await message.answer('Здесь будет информация о Аспирантуре')
+    select_buttons = {'Cтруктура обучения в Аспирантуре', 'Направление подготовки в Аспирантуре',
+                      'Учебные программы в Аспирантуре', 'Вернуться назад'}
+    keyboard_select = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard_select.add(*select_buttons)
+    await message.answer('Выберите информацию которую хотите узнать', reply_markup=keyboard_select)
+
+
+@dp.message_handler(Text(equals='Cтруктура обучения в Аспирантуре'))
+@dp.throttled(anti_flood, rate=4)
+async def education_schema(message: types.Message):
+    await message.answer(postgraduate_studies.education_schema())
+
+
+@dp.message_handler(Text(equals="Направление подготовки в Аспирантуре"))
+@dp.throttled(anti_flood, rate=4)
+async def direction_preparation(message: types.Message):
+    await message.answer(postgraduate_studies.direction_preparation())
+
+
+@dp.message_handler(Text(equals="Учебные программы в Аспирантуре"))
+@dp.throttled(anti_flood, rate=4)
+async def learning_programs(message: types.Message):
+    await message.answer(postgraduate_studies.learning_programs())
 
 
 # Эта функция создана для выбора информации об иннополисе
 @dp.message_handler(Text(equals="Немного информации об Иннополисе"))
 @dp.throttled(anti_flood, rate=4)
 async def study_information(message: types.Message):
-    select_buttons = ["Об учебе в Иннополисе", "О городе Иннополис", "О кампусе", "О студенческой жизни", "Назад"]
+    select_buttons = ["Об учебе в Иннополисе", "О городе Иннополис", "О кампусе", "О студенческой жизни",
+                      "Как поступить?", "Назад"]
     keyboard_study_information = types.ReplyKeyboardMarkup(resize_keyboard=True)
     keyboard_study_information.add(*select_buttons)
     await message.answer('Выберите информацию которую хотели бы узнать', reply_markup=keyboard_study_information)
@@ -99,6 +121,12 @@ async def about_campus(message: types.Message):
 @dp.throttled(anti_flood, rate=4)
 async def about_student_life(message: types.Message):
     await message.answer(information_about_innopolis.student_life())
+
+
+@dp.message_handler(Text(equals='Как поступить?'))
+@dp.throttled(anti_flood, rate=4)
+async def how_to_go(message: types.Message):
+    await message.answer(information_about_innopolis.how_to_go())
 
 
 # Проверка сообщения, на то является ли оно командой или пользователь написал что-то странное
