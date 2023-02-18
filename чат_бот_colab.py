@@ -76,3 +76,82 @@ for i in admission:
   print(i.text)
 
 """# Работник 2"""
+
+url = 'https://apply.innopolis.university'
+
+req = requests.get(url)
+
+soup = BS(req.text)
+
+город иннополис
+
+
+
+city = soup.find('div', 'campus-info__inno-city')
+
+city_title = city.find('h2')
+city_text = city.find('p')
+
+кампус
+
+
+
+campus = soup.find('div', 'campus-info-entrants-left')
+
+campus_title_bad = campus.find('h2')
+
+campus_text = campus.find('p')
+
+campus_title = []
+for i in campus_title_bad.stripped_strings:
+    campus_title.append(i)
+   
+
+студенческая жизнь
+
+student = soup.find('div', 'campus-info__student-life')
+student_title = student.find('h2')
+student_text = student.find('p')
+
+программы подготовки
+
+url = 'https://apply.innopolis.university/master/'
+req = requests.get(url)
+soup = BS(req.text)
+
+all = soup.find('div', 'uni-org-main__blocks-wrap')
+
+a = []
+for i in all:
+    print(i.text)
+
+
+как поступить
+
+all = soup.find('div', 'three-cards__main')
+
+for i in all:
+    print(i.text)
+
+
+
+all = soup.find('div', 'contacts__requisites')
+
+title = all.find('h2')
+working = all.find('div', 'contacts__who')
+phone = all.find('div', 'contacts__phone')
+mail = all.find('a')
+adres = all.find('div', 'contacts__address').find('p')
+
+
+print(title.text)
+print(working.text)
+print(phone.text)
+print(mail.text)
+print(adres.text)
+
+url = "https://apply.innopolis.university/"
+req = requests.get(url)
+soup = BS(req.text)
+
+bug = soup.find('div', 'learning-programs')
