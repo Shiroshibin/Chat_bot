@@ -33,28 +33,28 @@ async def choice_study_programs(message: types.Message):
         reply_markup=keyboard_study_programs)
 
     # Эта функция выдаёт информацию об Бакалавриате в иннополисе
-    @dp.message_handler(Text(equals="Бакалавриат"))
-    async def undergraduate(message: types.Message):
-        select_buttons = ['Вернуться к учебным программам', 'Вернуться к выбору информации']
-        keyboard_buttons_back = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard_buttons_back.add(*select_buttons)
-        await message.answer('Здесь будет информация о Бакалавриате', reply_markup=keyboard_buttons_back)
+@dp.message_handler(Text(equals='Бакалавриат'))
+async def undergraduate(message: types.Message):
+    select_buttons = ['Вернуться к учебным программам', 'Вернуться к выбору информации']
+    keyboard_buttons_back = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard_buttons_back.add(*select_buttons)
+    await message.answer('Здесь будет информация о Бакалавриате', reply_markup=keyboard_buttons_back)
 
     # Эта функция выдаёт информацию об Магистратуре в иннополисе
-    @dp.message_handler(Text(equals="Магистратура"))
-    async def magistracy(message: types.Message):
-        select_buttons = ['Вернуться к учебным программам', 'Вернуться к выбору информации']
-        keyboard_buttons_back = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard_buttons_back.add(*select_buttons)
-        await message.answer('Здесь будет информация о Магистратуре', reply_markup=keyboard_buttons_back)
+@dp.message_handler(Text(equals="Магистратура"))
+async def magistracy(message: types.Message):
+    select_buttons = ['Вернуться к учебным программам', 'Вернуться к выбору информации']
+    keyboard_buttons_back = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard_buttons_back.add(*select_buttons)
+    await message.answer('Здесь будет информация о Магистратуре', reply_markup=keyboard_buttons_back)
 
     # Эта функция выдаёт информацию об Аспирантуре в иннополисе
-    @dp.message_handler(Text(equals="Аспирантура"))
-    async def graduate_school(message: types.Message):
-        select_buttons = ['Вернуться к учебным программам', 'Вернуться к выбору информации']
-        keyboard_buttons_back = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        keyboard_buttons_back.add(*select_buttons)
-        await message.answer('Здесь будет информация о Аспирантуре', reply_markup=keyboard_buttons_back)
+@dp.message_handler(Text(equals="Аспирантура"))
+async def graduate_school(message: types.Message):
+    select_buttons = ['Вернуться к учебным программам', 'Вернуться к выбору информации']
+    keyboard_buttons_back = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    keyboard_buttons_back.add(*select_buttons)
+    await message.answer('Здесь будет информация о Аспирантуре', reply_markup=keyboard_buttons_back)
 
 
 # Эта функция создана для выбора информации об иннополисе
@@ -66,33 +66,40 @@ async def study_information(message: types.Message):
     keyboard_study_information.add(*select_buttons)
     await message.answer('Выберите информацию которую хотели бы узнать', reply_markup=keyboard_study_information)
 
-    @dp.message_handler(Text(equals="Об учебе в иннополисе"))
-    async def about_study(message: types.Message):
-        await message.answer('что-то про иннополис')
+@dp.message_handler(Text(equals="Об учебе в иннополисе"))
+async def about_study(message: types.Message):
+    await message.answer('что-то про иннополис')
 
-    @dp.message_handler(Text(equals="Об платном обучении"))
-    async def about_study(message: types.Message):
-        await message.answer('Об платном обучении')
+@dp.message_handler(Text(equals="Об платном обучении"))
+async def about_study(message: types.Message):
+    await message.answer('Об платном обучении')
 
-    @dp.message_handler(Text(equals="Олимпиадные бонусы"))
-    async def about_study(message: types.Message):
-        await message.answer('Олимпиадные бонусы')
+@dp.message_handler(Text(equals="Олимпиадные бонусы"))
+async def about_study(message: types.Message):
+    await message.answer('Олимпиадные бонусы')
 
-    @dp.message_handler(Text(equals="Часто задаваемые вопросы"))
-    async def about_study(message: types.Message):
-        await message.answer('Часто задаваемые вопросы')
+@dp.message_handler(Text(equals="Часто задаваемые вопросы"))
+async def about_study(message: types.Message):
+    await message.answer('Часто задаваемые вопросы')
 
-    @dp.message_handler(Text(equals="Отбор в университет"))
-    async def about_study(message: types.Message):
-        await message.answer("Отбор в университет")
+@dp.message_handler(Text(equals="Отбор в университет"))
+async def about_study(message: types.Message):
+    await message.answer("Отбор в университет")
 
 
+#Проверка сообщения, на то является ли оно командой или пользователь написал что-то странное
 @dp.message_handler(content_types=['text'])
-async def get_text_messages(message: types.Message):
-    if message.text != all_commands:
-        await message.answer('ЭЭ ты шо.. дурачёчечек???')
-    else:
+async def message_authentication(message: types.Message):
+    if message.text in all_commands:
         pass
+    else:
+        select_buttons = ['Вернуться к выбору информации']
+        keyboard_select = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        keyboard_select.add(*select_buttons)
+        await message.answer('Привет! Я бот для поиска информации, для поступающих в иннополис, и я понимаю только '
+                             'лишь определённые команды, которые появляются у вас в виде кнопок',
+                              reply_markup=keyboard_select)
+
 
 
 if __name__ == '__main__':
