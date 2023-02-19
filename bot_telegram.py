@@ -5,6 +5,7 @@ from aiogram.utils import executor
 from config import token, all_commands
 from aiogram.dispatcher.filters import Text
 from parser import information_about_innopolis, postgraduate_studies, magistr, bakalavr
+from time import localtime
 
 bot = Bot(token=token, parse_mode=types.ParseMode.HTML)
 storage = MemoryStorage()
@@ -188,4 +189,11 @@ async def message_authentication(message: types.Message):
 
 
 if __name__ == '__main__':
+    with open('state.txt', 'w') as state:
+        now_time = localtime()
+
+        state.write('Bot start in \n')
+        state.write(f'Time: {str(now_time.tm_hour).rjust(2, "0")}.{str(now_time.tm_min).rjust(2, "0")}.{str(now_time.tm_sec).rjust(2, "0")}\n')
+        state.write(f'Date: {str(now_time.tm_mday).rjust(2, "0")}.{str(now_time.tm_mon).rjust(2, "0")}.{now_time.tm_year}\n\n')
+
     executor.start_polling(dp)

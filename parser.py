@@ -1,3 +1,4 @@
+from time import localtime
 import requests
 from bs4 import BeautifulSoup
 from fake_useragent import UserAgent
@@ -15,8 +16,18 @@ class information_about_innopolis():
 
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
-        except TimeoutError:
+        except TimeoutError as error:
+            with open('state.txt', 'a') as state:
+                now_time = localtime()
+
+                state.write(f'Error in parser {str(error)}\n')
+                state.write(
+                    f'Time: {str(now_time.tm_hour).rjust(2, "0")}.{str(now_time.tm_min).rjust(2, "0")}.{str(now_time.tm_sec).rjust(2, "0")}\n')
+                state.write(
+                    f'Date: {str(now_time.tm_mday).rjust(2, "0")}.{str(now_time.tm_mon).rjust(2, "0")}.{now_time.tm_year}\n\n')
+
             return 'Похоже с сервером какие-то неполадки, пожалуйста попробуйте перезапустить бота с помощью это команды /start'
+
         soup = BeautifulSoup(response.text, 'lxml')
 
         city = soup.find('div', 'campus-info__inno-city')
@@ -32,8 +43,18 @@ class information_about_innopolis():
 
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
-        except TimeoutError:
+        except TimeoutError as error:
+            with open('state.txt', 'a') as state:
+                now_time = localtime()
+
+                state.write(f'Error in parser {str(error)}\n')
+                state.write(
+                    f'Time: {str(now_time.tm_hour).rjust(2, "0")}.{str(now_time.tm_min).rjust(2, "0")}.{str(now_time.tm_sec).rjust(2, "0")}\n')
+                state.write(
+                    f'Date: {str(now_time.tm_mday).rjust(2, "0")}.{str(now_time.tm_mon).rjust(2, "0")}.{now_time.tm_year}\n\n')
+
             return 'Похоже с сервером какие-то неполадки, пожалуйста попробуйте перезапустить бота с помощью это команды /start'
+
         soup = BeautifulSoup(response.text, 'lxml')
 
         campus = soup.find('div', 'campus-info-entrants-left')
@@ -49,8 +70,18 @@ class information_about_innopolis():
 
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
-        except TimeoutError:
+        except TimeoutError as error:
+            with open('state.txt', 'a') as state:
+                now_time = localtime()
+
+                state.write(f'Error in parser {str(error)}\n')
+                state.write(
+                    f'Time: {str(now_time.tm_hour).rjust(2, "0")}.{str(now_time.tm_min).rjust(2, "0")}.{str(now_time.tm_sec).rjust(2, "0")}\n')
+                state.write(
+                    f'Date: {str(now_time.tm_mday).rjust(2, "0")}.{str(now_time.tm_mon).rjust(2, "0")}.{now_time.tm_year}\n\n')
+
             return 'Похоже с сервером какие-то неполадки, пожалуйста попробуйте перезапустить бота с помощью это команды /start'
+
         soup = BeautifulSoup(response.text, 'lxml')
 
         student = soup.find('div', 'campus-info__student-life')
@@ -66,8 +97,16 @@ class information_about_innopolis():
 
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
-        except TimeoutError:
-            return 'Похоже с сервером какие-то неполадки, пожалуйста попробуйте перезапустить бота с помощью это команды /start'
+        except TimeoutError as error:
+            with open('state.txt', 'a') as state:
+                now_time = localtime()
+
+                state.write(f'Error in parser {str(error)}\n')
+                state.write(
+                    f'Time: {str(now_time.tm_hour).rjust(2, "0")}.{str(now_time.tm_min).rjust(2, "0")}.{str(now_time.tm_sec).rjust(2, "0")}\n')
+                state.write(
+                    f'Date: {str(now_time.tm_mday).rjust(2, "0")}.{str(now_time.tm_mon).rjust(2, "0")}.{now_time.tm_year}\n\n')
+
         soup = BeautifulSoup(response.text, 'lxml')
         list_of_training_information = soup.find_all("div", class_="three-card-slider-description-item__content")
         list_cards = ''
@@ -87,8 +126,15 @@ class information_about_innopolis():
 
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
-        except TimeoutError:
-            return 'проблемы с сервером'
+        except TimeoutError as error:
+            with open('state.txt', 'a') as state:
+                now_time = localtime()
+
+                state.write(f'Error in parser {str(error)}\n')
+                state.write(
+                    f'Time: {str(now_time.tm_hour).rjust(2, "0")}.{str(now_time.tm_min).rjust(2, "0")}.{str(now_time.tm_sec).rjust(2, "0")}\n')
+                state.write(
+                    f'Date: {str(now_time.tm_mday).rjust(2, "0")}.{str(now_time.tm_mon).rjust(2, "0")}.{now_time.tm_year}\n\n')
 
         soup = BeautifulSoup(response.text, 'lxml')
 
@@ -122,7 +168,16 @@ class postgraduate_studies():
 
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
-        except TimeoutError:
+        except TimeoutError as error:
+            with open('state.txt', 'a') as state:
+                now_time = localtime()
+
+                state.write(f'Error in parser {str(error)}\n')
+                state.write(
+                    f'Time: {str(now_time.tm_hour).rjust(2, "0")}.{str(now_time.tm_min).rjust(2, "0")}.{str(now_time.tm_sec).rjust(2, "0")}\n')
+                state.write(
+                    f'Date: {str(now_time.tm_mday).rjust(2, "0")}.{str(now_time.tm_mon).rjust(2, "0")}.{now_time.tm_year}\n\n')
+
             return 'Похоже с сервером какие-то неполадки, пожалуйста попробуйте перезапустить бота с помощью это команды /start'
 
         soup = BeautifulSoup(response.text, 'lxml')
@@ -148,7 +203,16 @@ class postgraduate_studies():
 
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
-        except TimeoutError:
+        except TimeoutError as error:
+            with open('state.txt', 'a') as state:
+                now_time = localtime()
+
+                state.write(f'Error in parser {str(error)}\n')
+                state.write(
+                    f'Time: {str(now_time.tm_hour).rjust(2, "0")}.{str(now_time.tm_min).rjust(2, "0")}.{str(now_time.tm_sec).rjust(2, "0")}\n')
+                state.write(
+                    f'Date: {str(now_time.tm_mday).rjust(2, "0")}.{str(now_time.tm_mon).rjust(2, "0")}.{now_time.tm_year}\n\n')
+
             return 'Похоже с сервером какие-то неполадки, пожалуйста попробуйте перезапустить бота с помощью это команды /start'
 
         soup = BeautifulSoup(response.text, 'lxml')
@@ -181,7 +245,16 @@ class postgraduate_studies():
 
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
-        except TimeoutError:
+        except TimeoutError as error:
+            with open('state.txt', 'a') as state:
+                now_time = localtime()
+
+                state.write(f'Error in parser {str(error)}\n')
+                state.write(
+                    f'Time: {str(now_time.tm_hour).rjust(2, "0")}.{str(now_time.tm_min).rjust(2, "0")}.{str(now_time.tm_sec).rjust(2, "0")}\n')
+                state.write(
+                    f'Date: {str(now_time.tm_mday).rjust(2, "0")}.{str(now_time.tm_mon).rjust(2, "0")}.{now_time.tm_year}\n\n')
+
             return 'Похоже с сервером какие-то неполадки, пожалуйста попробуйте перезапустить бота с помощью это команды /start'
 
         soup = BeautifulSoup(response.text, 'lxml')
@@ -205,7 +278,16 @@ class magistr():
 
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
-        except TimeoutError:
+        except TimeoutError as error:
+            with open('state.txt', 'a') as state:
+                now_time = localtime()
+
+                state.write(f'Error in parser {str(error)}\n')
+                state.write(
+                    f'Time: {str(now_time.tm_hour).rjust(2, "0")}.{str(now_time.tm_min).rjust(2, "0")}.{str(now_time.tm_sec).rjust(2, "0")}\n')
+                state.write(
+                    f'Date: {str(now_time.tm_mday).rjust(2, "0")}.{str(now_time.tm_mon).rjust(2, "0")}.{now_time.tm_year}\n\n')
+
             return 'Похоже с сервером какие-то неполадки, пожалуйста попробуйте перезапустить бота с помощью это команды /start'
 
         soup = BeautifulSoup(response.text, 'lxml')
@@ -230,7 +312,16 @@ class magistr():
 
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
-        except TimeoutError:
+        except TimeoutError as error:
+            with open('state.txt', 'a') as state:
+                now_time = localtime()
+
+                state.write(f'Error in parser {str(error)}\n')
+                state.write(
+                    f'Time: {str(now_time.tm_hour).rjust(2, "0")}.{str(now_time.tm_min).rjust(2, "0")}.{str(now_time.tm_sec).rjust(2, "0")}\n')
+                state.write(
+                    f'Date: {str(now_time.tm_mday).rjust(2, "0")}.{str(now_time.tm_mon).rjust(2, "0")}.{now_time.tm_year}\n\n')
+
             return 'Похоже с сервером какие-то неполадки, пожалуйста попробуйте перезапустить бота с помощью это команды /start'
 
         soup = BeautifulSoup(response.text, 'lxml')
@@ -261,7 +352,16 @@ class magistr():
 
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
-        except TimeoutError:
+        except TimeoutError as error:
+            with open('state.txt', 'a') as state:
+                now_time = localtime()
+
+                state.write(f'Error in parser {str(error)}\n')
+                state.write(
+                    f'Time: {str(now_time.tm_hour).rjust(2, "0")}.{str(now_time.tm_min).rjust(2, "0")}.{str(now_time.tm_sec).rjust(2, "0")}\n')
+                state.write(
+                    f'Date: {str(now_time.tm_mday).rjust(2, "0")}.{str(now_time.tm_mon).rjust(2, "0")}.{now_time.tm_year}\n\n')
+
             return 'Похоже с сервером какие-то неполадки, пожалуйста попробуйте перезапустить бота с помощью это команды /start'
 
         soup = BeautifulSoup(response.text, 'lxml')
@@ -285,8 +385,17 @@ class bakalavr():
 
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
-        except TimeoutError:
-            return 'проблемы с сервером'
+        except TimeoutError as error:
+            with open('state.txt', 'a') as state:
+                now_time = localtime()
+
+                state.write(f'Error in parser {str(error)}\n')
+                state.write(
+                    f'Time: {str(now_time.tm_hour).rjust(2, "0")}.{str(now_time.tm_min).rjust(2, "0")}.{str(now_time.tm_sec).rjust(2, "0")}\n')
+                state.write(
+                    f'Date: {str(now_time.tm_mday).rjust(2, "0")}.{str(now_time.tm_mon).rjust(2, "0")}.{now_time.tm_year}\n\n')
+
+            return 'Похоже с сервером какие-то неполадки, пожалуйста попробуйте перезапустить бота с помощью это команды /start'
 
         soup = BeautifulSoup(response.text, 'lxml')
 
@@ -300,8 +409,7 @@ class bakalavr():
             component = part.find("h5").text.capitalize().strip()
             # подробное описание
             description = re_sub('•', '\n•',
-                                 re_sub('\n', ' ', part.find("div",
-                                                             class_="learning-program-description").text)).strip().capitalize()
+                                 re_sub('\n', ' ', part.find("div", class_="learning-program-description").text)).replace('Три', '\nТри').strip()
             # объединяем
             full_schema = f'{component}:\n{description}\n\n'
             # добавляем к имеющейся части структуры
@@ -316,8 +424,17 @@ class bakalavr():
 
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
-        except TimeoutError:
-            return 'проблемы с сервером'
+        except TimeoutError as error:
+            with open('state.txt', 'a') as state:
+                now_time = localtime()
+
+                state.write(f'Error in parser {str(error)}\n')
+                state.write(
+                    f'Time: {str(now_time.tm_hour).rjust(2, "0")}.{str(now_time.tm_min).rjust(2, "0")}.{str(now_time.tm_sec).rjust(2, "0")}\n')
+                state.write(
+                    f'Date: {str(now_time.tm_mday).rjust(2, "0")}.{str(now_time.tm_mon).rjust(2, "0")}.{now_time.tm_year}\n\n')
+
+            return 'Похоже с сервером какие-то неполадки, пожалуйста попробуйте перезапустить бота с помощью это команды /start'
 
         soup = BeautifulSoup(response.text, 'lxml')
 
@@ -339,8 +456,15 @@ class bakalavr():
 
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
-        except TimeoutError:
-            return 'проблемы с сервером'
+        except TimeoutError as error:
+            with open('state.txt', 'a') as state:
+                now_time = localtime()
+
+                state.write(f'Error in parser {str(error)}\n')
+                state.write(f'Time: {str(now_time.tm_hour).rjust(2, "0")}.{str(now_time.tm_min).rjust(2, "0")}.{str(now_time.tm_sec).rjust(2, "0")}\n')
+                state.write(f'Date: {str(now_time.tm_mday).rjust(2, "0")}.{str(now_time.tm_mon).rjust(2, "0")}.{now_time.tm_year}\n\n')
+
+            return 'Похоже с сервером какие-то неполадки, пожалуйста попробуйте перезапустить бота с помощью это команды /start'
 
         soup = BeautifulSoup(response.text, 'lxml')
 
