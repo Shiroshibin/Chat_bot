@@ -11,7 +11,12 @@ class information_about_innopolis():
     # О городе иннополис
     def about_the_city_of_innopolis():
         url = 'https://apply.innopolis.university/'
-        response = requests.get(url)
+        ua = UserAgent()
+
+        try:
+            response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
+        except TimeoutError:
+            return 'Похоже с сервером какие-то неполадки, пожалуйста попробуйте перезапустить бота с помощью это команды /start'
         soup = BeautifulSoup(response.text, 'lxml')
 
         city = soup.find('div', 'campus-info__inno-city')
@@ -23,6 +28,8 @@ class information_about_innopolis():
     # О кампусе
     def about_campus():
         url = 'https://apply.innopolis.university/'
+        ua = UserAgent()
+
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
         except TimeoutError:
@@ -38,6 +45,8 @@ class information_about_innopolis():
     # О студенческой жизни
     def student_life():
         url = 'https://apply.innopolis.university/'
+        ua = UserAgent()
+
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
         except TimeoutError:
@@ -53,6 +62,8 @@ class information_about_innopolis():
     # Эта функция отвечает за информацию об обучении
     def about_study_parser():
         url = "https://apply.innopolis.university/?lang=ru&id=12&site=s1&template=university24&landing_mode=edit"
+        ua = UserAgent()
+
         try:
             response = requests.get(url, headers={'User-Agent': ua.random}, timeout=3)
         except TimeoutError:
