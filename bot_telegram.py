@@ -59,19 +59,22 @@ async def undergraduate(message: types.Message):
 @dp.message_handler(Text(equals="Cтруктура обучения в Бакалавриате"))
 @dp.throttled(anti_flood, rate=2)
 async def education_schema(message: types.Message):
-    await message.answer(bakalavr.education_schema())
+    with open('bakalavr/education_schema.txt', 'r', encoding="utf-8") as file_education_schema:
+        await message.answer(file_education_schema.read())
 
 
 @dp.message_handler(Text(equals="Направление подготовки в Бакалавриате"))
 @dp.throttled(anti_flood, rate=2)
 async def direction_preparation(message: types.Message):
-    await message.answer(bakalavr.direction_preparation())
+    with open('bakalavr/direction_preparation.txt', 'r', encoding="utf-8") as file_direction_preparation:
+        await message.answer(file_direction_preparation.read())
 
 
 @dp.message_handler(Text(equals="Учебные программы в Бакалавриате"))
 @dp.throttled(anti_flood, rate=2)
 async def learning_programs(message: types.Message):
-    await message.answer(bakalavr.learning_programs())
+    with open('bakalavr/learning_programs.txt', 'r', encoding="utf-8") as file_learning_programs:
+        await message.answer(file_learning_programs.read())
 
 
 # Эта функция выдаёт информацию об Магистратуре в иннополисе
@@ -88,19 +91,22 @@ async def magistracy(message: types.Message):
 @dp.message_handler(Text(equals="Cтруктура обучения в Магистратуре"))
 @dp.throttled(anti_flood, rate=2)
 async def education_schema(message: types.Message):
-    await message.answer(magistr.education_schema())
+    with open('magistr/education_schema.txt', 'r', encoding="utf-8") as file_education_schema:
+        await message.answer(file_education_schema.read())
 
 
 @dp.message_handler(Text(equals="Направление подготовки в Магистратуре"))
 @dp.throttled(anti_flood, rate=2)
 async def direction_preparation(message: types.Message):
-    await message.answer(magistr.direction_preparation())
+    with open('magistr/direction_preparation.txt', 'r', encoding="utf-8") as file_direction_preparation:
+        await message.answer(file_direction_preparation.read())
 
 
 @dp.message_handler(Text(equals="Учебные программы в Магистратуре"))
 @dp.throttled(anti_flood, rate=2)
 async def learning_programs(message: types.Message):
-    await message.answer(magistr.learning_programs())
+    with open('magistr/learning_programs.txt', 'r', encoding="utf-8") as file_learning_programs:
+        await message.answer(file_learning_programs.read())
 
 
 # Эта функция выдаёт информацию об Аспирантуре в иннополисе
@@ -117,19 +123,22 @@ async def graduate_school(message: types.Message):
 @dp.message_handler(Text(equals='Cтруктура обучения в Аспирантуре'))
 @dp.throttled(anti_flood, rate=2)
 async def education_schema(message: types.Message):
-    await message.answer(postgraduate_studies.education_schema())
+    with open('postgraduate_studies/education_schema.txt', 'r', encoding="utf-8") as file_education_schema:
+        await message.answer(file_education_schema.read())
 
 
 @dp.message_handler(Text(equals="Направление подготовки в Аспирантуре"))
 @dp.throttled(anti_flood, rate=2)
 async def direction_preparation(message: types.Message):
-    await message.answer(postgraduate_studies.direction_preparation())
+    with open('postgraduate_studies/direction_preparation.txt', 'r', encoding="utf-8") as file_direction_preparation:
+        await message.answer(file_direction_preparation.read())
 
 
 @dp.message_handler(Text(equals="Учебные программы в Аспирантуре"))
 @dp.throttled(anti_flood, rate=2)
 async def learning_programs(message: types.Message):
-    await message.answer(postgraduate_studies.learning_programs())
+    with open('postgraduate_studies/learning_programs.txt', 'r', encoding="utf-8") as file_learning_programs:
+        await message.answer(file_learning_programs.read())
 
 
 # Эта функция создана для выбора информации об иннополисе
@@ -146,31 +155,36 @@ async def study_information(message: types.Message):
 @dp.message_handler(Text(equals="Об учебе в Иннополисе"))
 @dp.throttled(anti_flood, rate=2)
 async def about_study(message: types.Message):
-    await message.answer(information_about_innopolis.about_study_parser())
+    with open('some_info_about_inun/about_study_parser.txt', 'r', encoding="utf-8") as file_about_study_parser:
+        await message.answer(file_about_study_parser.read())
 
 
 @dp.message_handler(Text(equals="О городе Иннополис"))
 @dp.throttled(anti_flood, rate=2)
 async def about_the_city_of_innopolis(message: types.Message):
-    await message.answer(information_about_innopolis.about_the_city_of_innopolis())
+    with open('some_info_about_inun/about_the_city_of_innopolis.txt', 'r', encoding="utf-8") as file_about_the_city_of_innopolis:
+        await message.answer(file_about_the_city_of_innopolis.read())
 
 
 @dp.message_handler(Text(equals="О кампусе"))
 @dp.throttled(anti_flood, rate=2)
 async def about_campus(message: types.Message):
-    await message.answer(information_about_innopolis.about_campus())
+    with open('some_info_about_inun/about_campus.txt', 'r', encoding="utf-8") as file_about_campus:
+        await message.answer(file_about_campus.read())
 
 
 @dp.message_handler(Text(equals="О студенческой жизни"))
 @dp.throttled(anti_flood, rate=2)
 async def about_student_life(message: types.Message):
-    await message.answer(information_about_innopolis.student_life())
+    with open('some_info_about_inun/student_life.txt', 'r', encoding="utf-8") as file_student_life:
+        await message.answer(file_student_life.read())
 
 
 @dp.message_handler(Text(equals='Как поступить?'))
 @dp.throttled(anti_flood, rate=2)
 async def how_to_go(message: types.Message):
-    await message.answer(information_about_innopolis.how_to_go())
+    with open('some_info_about_inun/how_to_go.txt', 'r', encoding="utf-8") as file_how_to_go:
+        await message.answer(file_how_to_go.read())
 
 
 # Проверка сообщения, на то является ли оно командой или пользователь написал что-то странное

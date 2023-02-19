@@ -34,6 +34,8 @@ class information_about_innopolis():
         city_title = city.find('h2').text
         city_text = city.find('p').text
 
+
+
         return city_title + '\n' + city_text
 
     # О кампусе
@@ -157,6 +159,7 @@ class information_about_innopolis():
             all_steps += full_how_to_go
 
         return all_steps
+
 
 
 class postgraduate_studies():
@@ -477,3 +480,62 @@ class bakalavr():
         all_direction = f'{direction_preparation_title}:\n{direction_preparation_content}'
 
         return all_direction
+
+
+if __name__ == '__main__':
+    ## Общая информация об Иннополисе
+    # О городе Иннополис
+    with open('some_info_about_inun/about_the_city_of_innopolis.txt', 'w', encoding="utf-8") as file_about_the_city_of_innopolis:
+        file_about_the_city_of_innopolis.write(information_about_innopolis.about_the_city_of_innopolis())
+
+    # О кампусе
+    with open('some_info_about_inun/about_campus.txt', 'w', encoding="utf-8") as file_about_campus:
+        file_about_campus.write(information_about_innopolis.about_campus())
+
+    # О студенческой жизни
+    with open('some_info_about_inun/student_life.txt', 'w', encoding="utf-8") as file_student_life:
+        file_student_life.write(information_about_innopolis.student_life())
+
+    # Эта функция отвечает за информацию об обучении
+    with open('some_info_about_inun/about_study_parser.txt', 'w', encoding="utf-8") as file_about_study_parser:
+        file_about_study_parser.write(information_about_innopolis.about_study_parser())
+
+    # как поступить
+    with open('some_info_about_inun/how_to_go.txt', 'w', encoding="utf-8") as file_how_to_go:
+        file_how_to_go.write(information_about_innopolis.how_to_go())
+    ##Учебные программы
+    # направление подготовки бакалавров
+    with open('bakalavr/direction_preparation.txt', 'w', encoding="utf-8") as file_direction_preparation:
+        file_direction_preparation.write(bakalavr.direction_preparation())
+
+    # учебные программы бакалавров
+    with open('bakalavr/learning_programs.txt', 'w', encoding="utf-8") as file_learning_programs:
+        file_learning_programs.write(bakalavr.learning_programs())
+
+    # структура обучения бакалавров
+    with open('bakalavr/education_schema.txt', 'w', encoding="utf-8") as file_education_schema:
+        file_education_schema.write(bakalavr.education_schema())
+
+        # направление подготовки магистров
+    with open('magistr/direction_preparation.txt', 'w', encoding="utf-8") as file_direction_preparation:
+        file_direction_preparation.write(magistr.direction_preparation())
+
+        # учебные программы магистров
+    with open('magistr/learning_programs.txt', 'w', encoding="utf-8") as file_learning_programs:
+        file_learning_programs.write(magistr.learning_programs())
+
+        # структура обучения магистров
+    with open('magistr/education_schema.txt', 'w', encoding="utf-8") as file_education_schema:
+        file_education_schema.write(magistr.education_schema())
+
+    # направление подготовки аспирантов
+    with open('postgraduate_studies/direction_preparation.txt', 'w', encoding="utf-8") as file_direction_preparation:
+        file_direction_preparation.write(postgraduate_studies.direction_preparation())
+
+    # учебные программы аспирантов
+    with open('postgraduate_studies/learning_programs.txt', 'w', encoding="utf-8") as file_learning_programs:
+        file_learning_programs.write(postgraduate_studies.learning_programs())
+
+    # структура обучения аспирантов
+    with open('postgraduate_studies/education_schema.txt', 'w', encoding="utf-8") as file_education_schema:
+        file_education_schema.write(postgraduate_studies.education_schema())
