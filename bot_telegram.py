@@ -11,9 +11,9 @@ storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
 
 
-# Функция для защиты от флудил
-async def anti_flood(*args, **kwargs):
-    pass
+# Функция для защиты от флуда
+async def anti_flood(message: types.Message, *args, **kwargs):
+    await message.delete()
 
 
 # Это первоначальный опрос пользователя, чтобы узнать какую он информацию хочет получить
